@@ -5,22 +5,25 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Image To Text Converter</title>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
+<script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
 <script>
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {  
-Tesseract.recognise(imagePath,successCallback,errorCallback);
-
-function nativePluginResultHandler (result) {
-    console.log(result);
-}
-
-function nativePluginErrorHandler (error) {
-    console.log(error);
-}
 }
 </script>
 </head>
 
 <body>
+<textarea id="textarea1" name="textarea1"></textarea>
+<img id="largeImage" src="test.png" ></img>
+
+<script>
+ var myimage = document.getElementById("largeImage").src;
+
+      Tesseract.recognize(myimage)
+    .then(function(result){
+       // console.log(result);
+document.getElementById("textarea1").value = result.text; // assign results to a textbox
+</script>
 </body>
 </html>
